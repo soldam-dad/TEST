@@ -1,0 +1,40 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "./logs/.audit.json",
+    "files": [
+        {
+            "date": 1749428255841,
+            "name": "logs\\apiwrap.2025-06-09.log",
+            "hash": "499f318921ce4b6fe140cfb1f600d0708eaa6eb59dbae44c70917fd73f9a78f6"
+        },
+        {
+            "date": 1749513463329,
+            "name": "logs\\apiwrap.2025-06-10.log",
+            "hash": "29fbcbdb311f0c5c8404c1c39191f0a631a4d02a3cd876820587f3c4c1886da6"
+        },
+        {
+            "date": 1749600313890,
+            "name": "logs\\apiwrap.2025-06-11.log",
+            "hash": "340812fb2b2c77c5a1e0feaf0b29324247539515c4c1e7b167ee93c746c71f1f"
+        },
+        {
+            "date": 1749714648595,
+            "name": "logs\\apiwrap.2025-06-12.log",
+            "hash": "2a425b1790eff4d47a494f65e960e86a22ea3edce4104c83644b9bde45919ca8"
+        },
+        {
+            "date": 1749794371048,
+            "name": "logs\\apiwrap.2025-06-13.log",
+            "hash": "f6a8a3b65e63aa098d8519cb91a26468c27f4775b60c66901424416a01cad490"
+        },
+        {
+            "date": 1750032242302,
+            "name": "logs\\apiwrap.2025-06-16.log",
+            "hash": "97b9f882148d5823c23e85e58a6681032c4ab2cf804392e4c2e9d7e2f257af01"
+        }
+    ],
+    "hashType": "sha256"
+}

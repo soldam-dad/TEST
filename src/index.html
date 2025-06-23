@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>MCI연계</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h1>데이터조회</h1>
+    <label>
+      테스트 값 <br> 
+      &nbsp;&nbsp;(구분: 1/ 계정계/ 서비스명: LAYOUT) <br>
+      &nbsp;&nbsp;(구분: 2/ 계정계/ 서비스명: TEST) <br>
+      &nbsp;&nbsp;(구분: 3/ 계정계/ 서비스명: ARRTEST - 배열값 테스트) 
+    </label><br><br>
+    <label>
+      구분: <input type="text" id="sendmsg" value="요청전문" required>
+    </label><br><br>
+    <label>
+      구분: <input type="text" id="gbn" required>
+    </label><br><br>
+    <label>
+      값1: <input type="text" id="id" required>
+    </label><br><br>
+    <label>
+      값2: <input type="text" id="pw" required>
+    </label><br><br>
+
+    <select id="prot" name="prot">
+      <option value="apr">계정계(테스트가능)</option>
+      <option value="api">정보계(테스트불가)</option>
+    </select><br><br>
+
+    <label>
+      서비스명: <input type="text" id="svcnm">
+    </label><br><br>
+</select>
+
+  <button onclick="fetchHtml()">데이터조회</button>
+  <div id="result" style="margin-top:20px; border:1px solid #ccc; padding:10px;"></div>
+
+  <script>
+    function fetchHtml() {
+      var prot = $("#prot").val();  
+      var svcnm = $("#svcnm").val();
+
+      const jsonData = {
+        gbn: $("#gbn").val(),
+        sendmsg: $("#sendmsg").val(),
+        id: $("#id").val(),
+        pw: $("#pw").val()
+      };
+
+      axios.post('/'+prot+'/'+svcnm, jsonData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+      })
+      .then(response => {
+        const result = response.data;
+        // result가 객체이고, id와 name 속성이 있을 때 출력
+        const id = result.id ;
+        const name = result.name ;
+        const val = result.val ;
+        const revmsg = result.revmsg ;
+        const html = `
+          <p><strong>ID:</strong> ${JSON.stringify(result)}</p>
+          <p><strong>전문구분:</strong> ${revmsg}</p>
+          <p><strong>값1:</strong> ${id}</p>
+          <p><strong>값2:</strong> ${name}</p>
+          <p><strong>값3:</strong> ${val}</p>
+        `;
+
+        document.getElementById('result').innerHTML = html;
+      })
+      .catch(error => {
+        document.getElementById('result').innerText = '오류: ' + error.message;
+      });
+    }
+  </script>
+</body>
+</html>

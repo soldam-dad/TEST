@@ -1,0 +1,28 @@
+NODE TCP/IP통신 이용 요청시 JSON TO STRING 응답시 STRING TO JSON 구현
+추후 작업
+1. \schema 폴더에 통신할 데이터 레이아웃 추가 필요 
+2. 화면에서 post('/apr/LAYOUT'...) 형태로 호출
+   /apr/LAYOUT 에서 apr는 업무구분 다양한 통신방식을 고려해서 통신방식 단위로 정의하면 좋을것임 - 자체정의하면 됨
+   LAYOUT는 호출할 TR(서비스)명 입력
+   
+   
+테스트방법
+1. cmd 창에서 node socketserver 로 응답받을 서버구동(계정계 서버 역할)
+2. cmd 창에서 node server 로 MCI연계 프로그램 수행(클라이언트서버 역할)
+3. 웹에서 http://localhost:3000/ 로 테스트할 페이지 호출
+
+1. pm2 사용 무중단 서비스 구동 및 클러스터 모드 사용    
+
+npm install pm2 -g 로 설치 필요
+
+pm2 start ecosystem.config.js 로 클러스터 모드 사용   
+프로세스 하나 죽어도 서비스 계속 운영 가능 
+
+pm2 프로세스 중단 
+pm2 list 확인후 
+pm2 stop ID명
+모든 프로세스 죽임
+pm2 delete all
+
+재시작 
+pm2 restart all / pm2 restart ID명

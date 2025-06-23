@@ -1,0 +1,44 @@
+services:
+  server1:
+    build: .
+    ports:
+      - "3001:3000"
+    environment:
+      - PORT=3000
+      - SERVER_NAME=Server1
+    volumes:
+      - "/mci-link/logs/server1:/mci-link/logs"
+    networks:
+      - app_net
+    restart: on-failure          
+
+  server2:
+    build: .
+    ports:
+      - "3002:3000"
+    environment:
+      - PORT=3000
+      - SERVER_NAME=Server2
+    volumes:
+      - "/mci-link/logs/server2:/mci-link/logs"
+    networks:
+      - app_net
+    restart: on-failure    
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - server1
+      - server2
+    networks:
+      - app_net
+    restart: on-failure    
+
+networks:
+  app_net:
+    driver: bridge
