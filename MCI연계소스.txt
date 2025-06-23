@@ -26,3 +26,5 @@ pm2 delete all
 
 재시작 
 pm2 restart all / pm2 restart ID명
+
+리눅스 에서 ifconfig 후 ens33 나오는 IP가 주소임
